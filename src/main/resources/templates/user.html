@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='UTF-8'>
+	
+	<title>Project Salad</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="../css/style.css">
+	
+	<!--[if !IE]><!-->
+	<style>
+	
+	header{
+		width: 100%;
+		height: 5vh;
+		margin: 0;
+	}
+
+	.funcbar_container{
+		height: 5vh;
+    	margin: 3vh 5vh 3vh 5vh;
+    	width: 95%;
+	}
+
+	.funcbar_main{
+		width: 100%;
+   		height: 100%;
+    	background-color: #424242;
+    	border-radius: 1vh;
+    	display: flex;
+	}
+
+	.add_row{
+		height: 100%;
+	    width: 5%;
+	    margin: 0 2vh 0 2vh;
+	}
+
+	.add_row_icon{
+		height: 100%;
+	    width: 5%;
+	}
+
+	.remove_row{
+		height: 100%;
+	    width: 5%;
+	    margin: 0 2vh 0 2vh;
+	}
+
+	.remove_row_icon{
+		height: 100%;
+	    width: 5%;
+	}
+
+	.save_db{
+		height: 100%;
+	    width: 5%;
+	    margin: 0 2vh 0 2vh;
+	}
+
+	.save_db_icon{
+		height: 100%;
+	    width: 5%;
+	}
+
+	.choose_table{
+		height: 100%;
+	    width: 5%;
+	    margin: 0 2vh 0 2vh;
+	}
+
+	.choose_table_textbox{
+		height: 100%;
+	    width: 5%;
+	}
+
+	.update_table{
+		height: 100%;
+	    width: 5%;
+	    margin: 0 2vh 0 2vh;
+	}
+
+	.update_table_icon{
+		height: 100%;
+	    width: 5%;
+	}
+
+	.search_box{
+		height: 100%;
+    	width: 5%;
+    	margin: 0 2vh 0 2vh;
+	}
+
+	.search_box_textbox{
+		height: 100%;
+    	width: 5%;
+	}
+
+
+
+	.define_table{
+			margin: 0vh 8vh 5vh 9vh;
+    		width: 90%;
+    		border-collapse: collapse;
+
+		}
+	
+	@media 
+	only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+	
+		/* Force table to not be like tables anymore */
+		thead, tbody, th, td, tr { 
+			margin:0;
+			display: block; 
+		}
+
+		
+		
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead tr { 
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+		
+		tr { border: 1px solid #ccc; }
+		
+		td { 
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee; 
+			position: relative;
+			padding-left: 50%; 
+		}
+		
+		td:before { 
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%; 
+			padding-right: 10px; 
+			white-space: nowrap;
+		}
+		
+		/*
+		Label the data
+		*/
+		td:nth-of-type(1):before { content: "First Name"; }
+		td:nth-of-type(2):before { content: "Last Name"; }
+		td:nth-of-type(3):before { content: "Job Title"; }
+		td:nth-of-type(4):before { content: "Favorite Color"; }
+		td:nth-of-type(5):before { content: "Wars of Trek?"; }
+		td:nth-of-type(6):before { content: "Porn Name"; }
+		td:nth-of-type(7):before { content: "Date of Birth"; }
+		td:nth-of-type(8):before { content: "Dream Vacation City"; }
+		td:nth-of-type(9):before { content: "GPA"; }
+		td:nth-of-type(10):before { content: "Arbitrary Data"; }
+	}
+	
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body { 
+			padding: 0; 
+			margin: 0; 
+			width: 320px; }
+		}
+	
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body { 
+			width: 495px; 
+		}
+	}
+
+	.dbform{
+		background-color:#424242;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		padding:0px;
+	}
+
+	.project_name{
+		height: 100%;
+    	width: 14vw;
+	}
+
+	.roles_button{
+		
+	}
+
+	.logout{
+		width: 8%;
+    	height: 100%;
+   		padding-left: 78%;
+    	
+	}
+
+	.logout_text{
+		font-family: monospace;
+    	font-size: 2vh;
+    	color: #FFFFFF;
+    	margin: 1vh;
+    	user-select: none;
+	}
+
+	.project_name_text{
+		font-family: monospace;
+    	font-size: 2vh;
+    	color: #FFFFFF;
+    	margin: 1vh;
+    	user-select: none;
+	}
+	
+	</style>
+	<!--<![endif]-->
+
+</head>
+
+<body>
+
+	<header>
+		
+		<div class="dbform">
+			
+			<div class="project_name">
+				<div class="project_name_text">Project Salad</div>
+			</div>
+
+			<div class="logout">
+
+				<div class="logout_text">Log out</div>
+
+			</div>
+
+		</div>
+
+	</header>
+	
+	<div class="funcbar_container">
+
+		<div class="funcbar_main">
+			
+			<div class="add_row">
+
+				<div class="add_row_icon">
+				
+				</div>
+
+			</div>
+
+			<div class="remove_row">
+
+				<div class="remove_row_icon">
+				
+				</div>
+
+			</div>
+
+			<div class="save_db">
+
+				<div class="save_db_icon">
+				
+				</div>
+
+			</div>
+
+			<div class="choose_table">
+
+				<div class="choose_table_textbox">
+				
+				</div>
+
+			</div>
+
+			<div class="update_table">
+
+				<div class="update_table_icon">
+				
+				</div>
+
+			</div>
+
+			<div class="search_box">
+
+				<div class="search_box_textbox">
+				
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+    
+	<table class="define_table">
+		<thead>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Job Title</th>
+			<th>Favorite Color</th>
+			<th>Wars or Trek?</th>
+			<th>Porn Name</th>
+			<th>Date of Birth</th>
+			<th>Dream Vacation City</th>
+			<th>GPA</th>
+			<th>Arbitrary Data</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>James</td>
+			<td>Matman</td>
+			<td>Chief Sandwich Eater</td>
+			<td>Lettuce Green</td>
+			<td>Trek</td>
+			<td>Digby Green</td>
+			<td>January 13, 1979</td>
+			<td>Gotham City</td>
+			<td>3.1</td>
+			<td>RBX-12</td>
+		</tr>
+		<tr>
+		  <td>The</td>
+		  <td>Tick</td>
+		  <td>Crimefighter Sorta</td>
+		  <td>Blue</td>
+		  <td>Wars</td>
+		  <td>John Smith</td>
+		  <td>July 19, 1968</td>
+		  <td>Athens</td>
+		  <td>N/A</td>
+		  <td>Edlund, Ben (July 1996).</td>
+		</tr>
+		<tr>
+		  <td>Jokey</td>
+		  <td>Smurf</td>
+		  <td>Giving Exploding Presents</td>
+		  <td>Smurflow</td>
+		  <td>Smurf</td>
+		  <td>Smurflane Smurfmutt</td>
+		  <td>Smurfuary Smurfteenth, 1945</td>
+		  <td>New Smurf City</td>
+		  <td>4.Smurf</td>
+		  <td>One</td>
+		</tr>
+		<tr>
+		  <td>Cindy</td>
+		  <td>Beyler</td>
+		  <td>Sales Representative</td>
+		  <td>Red</td>
+		  <td>Wars</td>
+		  <td>Lori Quivey</td>
+		  <td>July 5, 1956</td>
+		  <td>Paris</td>
+		  <td>3.4</td>
+		  <td>3451</td>
+		</tr>
+		<tr>
+		  <td>Captain</td>
+		  <td>Cool</td>
+		  <td>Tree Crusher</td>
+		  <td>Blue</td>
+		  <td>Wars</td>
+		  <td>Steve 42nd</td>
+		  <td>December 13, 1982</td>
+		  <td>Las Vegas</td>
+		  <td>1.9</td>
+		  <td>Under the couch</td>
+		</tr>
+		</tbody>
+	</table>
+	
+	</div>
+		
+</body>
+
+</html>
