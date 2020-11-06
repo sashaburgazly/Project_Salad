@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <title>Log in</title>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <style>
       html, body {
       display: flex;
@@ -60,17 +60,17 @@
     </style>
 </head>
 <body>
-<form action="/user"@>
+<form action="#" th:action="@{/login}" th:object="${loginForm}" method="post">
     <h1>LOG IN</h1>
     <div class="form_container">
         <div class="container">
             <label><strong>Username</strong></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="text" placeholder="Enter Username" th:field="*{login}" required>
             <label><strong>Password</strong></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="text" placeholder="Enter Password" th:field="*{password}" required>
         </div>
 
-        <a href="../reg">Sign up</a>
+<!--        <a href="../reg">Sign up</a>-->
         <div class="button_container">
             <button type="submit"><strong>LOG IN</strong></button>
         </div>

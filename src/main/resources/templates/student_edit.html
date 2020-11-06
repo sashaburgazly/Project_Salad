@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form action="#" th:action="@{/student/save}" th:object="${studentForm}" method="post">
+
+                <input type="hidden" name="id" th:value="${studentForm.id}" th:field="*{id}">
+                <input type="text" name="firstName" th:value="${studentForm.firstName}" th:field="*{firstName}">
+                <input type="text" name="lastName" th:value="${studentForm.lastName}" th:field="*{lastName}">
+                <input type="text" name="fatherName" th:value="${studentForm.fatherName}" th:field="*{fatherName}">
+                <input type="date" name="id" th:value="${studentForm.date}" th:field="*{date}">
+                <input type="text" name="id" th:value="${studentForm.address}" th:field="*{address}">
+                <input type="tel" name="id" th:value="${studentForm.phone}" th:field="*{phone}">
+
+                <button type="submit">SAVE</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

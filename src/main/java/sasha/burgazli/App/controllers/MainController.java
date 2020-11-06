@@ -20,7 +20,7 @@ public class MainController {
 //    @Autowired
 //    private UserService userService;
 
-    @GetMapping("/log")
+    @GetMapping("/main")
     public ModelAndView main() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("index_log");
@@ -44,7 +44,6 @@ public class MainController {
     public String openUser() {
         return "user";
     }
-
 
 
 }
