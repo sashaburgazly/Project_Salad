@@ -1,5 +1,7 @@
 package sasha.burgazli.App.models;
 
+import sasha.burgazli.App.models.form.StudentForm;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -34,13 +36,8 @@ public class Student {
 
     }
 
-    public Student(String firstName, String lastName, String fatherName, Date date, String address, String phone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.fatherName = fatherName;
-        this.date = date;
-        this.address = address;
-        this.phone = phone;
+    public Student(StudentForm form) {
+       this.update(form);
     }
 
 
@@ -94,5 +91,14 @@ public class Student {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public void update(StudentForm form) {
+        this.firstName = form.getFirstName();
+        this.lastName = form.getLastName();
+        this.fatherName = form.getFatherName();
+        this.date = form.getDate();
+        this.address = form.getAddress();
+        this.phone = form.getPhone();
     }
 }

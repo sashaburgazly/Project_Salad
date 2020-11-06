@@ -2,6 +2,7 @@ package sasha.burgazli.App.service.impl;
 
 import org.springframework.stereotype.Service;
 import sasha.burgazli.App.models.Student;
+import sasha.burgazli.App.models.form.StudentForm;
 import sasha.burgazli.App.repositories.StudentRepository;
 import sasha.burgazli.App.service.StudentService;
 
@@ -19,10 +20,17 @@ public class StudentServiceImpl implements StudentService {
 
 
         for (int i = 0; i < 10; i++) {
-            this.repository.save(new Student(String.valueOf(i),
-                    String.valueOf(i),
-                    String.valueOf(i),
-                    new Date(), String.valueOf(i), String.valueOf(i)));
+
+            StudentForm form = new StudentForm();
+            form.setFirstName(String.valueOf(i));
+            form.setLastName(String.valueOf(i));
+            form.setFatherName(String.valueOf(i));
+
+            this.repository.save(new Student(form));
+//            this.repository.save(new Student(String.valueOf(i),
+//                    String.valueOf(i),
+//                    String.valueOf(i),
+//                    new Date(), String.valueOf(i), String.valueOf(i)));
         }
 
 
@@ -42,5 +50,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Optional<Student> findById(Long id) {
         return this.repository.findById(id);
+    }
+
+    @Override
+    public void save(Student student) {
+        this.repository.save(student);
     }
 }

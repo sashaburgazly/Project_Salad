@@ -6,9 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class StudentForm {
+
+    private final static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     private String id;
 
@@ -75,7 +79,11 @@ public class StudentForm {
     }
 
     public void setDate(String date) {
-        this.date = new Date(date);
+        try {
+            this.date = SIMPLE_DATE_FORMAT.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getAddress() {

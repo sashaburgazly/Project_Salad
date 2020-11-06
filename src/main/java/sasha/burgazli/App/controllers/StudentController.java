@@ -51,7 +51,9 @@ public class StudentController {
             mav.setViewName("student_edit");
             mav.addObject("studentForm", form);
         } else {
+            List<Student> list = this.service.findAll();
             mav.setViewName("student");
+            mav.addObject("students", list);
         }
 
         return mav;
@@ -61,8 +63,21 @@ public class StudentController {
     private String save(StudentForm form, BindingResult result) {
 
         if (result.hasErrors()) {
-            form.getDate();
+            return "redirect:/edit";
         }
+
+        Optional<Student> optional = this.service.findById(Long.valueOf(form.getId()));
+
+        Student student1 = null;
+        if (optional.isPresent()) {
+            student1 = optional.get();
+            student1.update(form);
+        } else {
+            student1 = new Student(form);
+        }
+
+
+        this.service.save(student1);
 
         return "redirect:/student";
     }
