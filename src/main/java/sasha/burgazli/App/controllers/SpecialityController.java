@@ -6,20 +6,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import sasha.burgazli.App.models.Faculty;
 import sasha.burgazli.App.models.Speciality;
 import sasha.burgazli.App.models.form.SpecialityForm;
+import sasha.burgazli.App.service.FacultyService;
 import sasha.burgazli.App.service.SpecialityService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class SpecialityController {
 
     private final SpecialityService service;
+    private final FacultyService facultyService;
 
-    public SpecialityController(SpecialityService service) {
+    public SpecialityController(SpecialityService service, FacultyService facultyService) {
         this.service = service;
+        this.facultyService = facultyService;
     }
 
 
@@ -45,12 +50,13 @@ public class SpecialityController {
         if (optional.isPresent()) {
 
             SpecialityForm form = new SpecialityForm(optional.get());
-
+            mav.addObject("faculties", this.facultyService.findAll());
             mav.setViewName("speciality_edit");
             mav.addObject("specialityForm", form);
         } else {
             List<Speciality> list = this.service.findAll();
             mav.setViewName("speciality");
+            mav.addObject("faculties", this.facultyService.findAll());
             mav.addObject("specialities", list);
         }
 
@@ -65,10 +71,16 @@ public class SpecialityController {
         }
 
         Optional<Speciality> optional = null;
-        if(form.getId() == null || form.getId().isEmpty()){
+        if (form.getId() == null || form.getId().isEmpty()) {
             optional = Optional.empty();
-        }else {
+        } else {
             optional = this.service.findById(Long.valueOf(form.getId()));
+        }
+
+        Optional<Faculty> faculty = this.facultyService
+                .findById(form.getFacultyId());
+        if (faculty.isPresent()) {
+            form.setFacultyName(faculty.get().getFacultyName());
         }
 
 
@@ -92,7 +104,10 @@ public class SpecialityController {
         ModelAndView mav = new ModelAndView();
         SpecialityForm form = new SpecialityForm();
 
+
+
         mav.setViewName("speciality_edit");
+        mav.addObject("faculties", this.facultyService.findAll());
         mav.addObject("specialityForm", form);
 
         return mav;

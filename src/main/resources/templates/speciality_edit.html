@@ -70,10 +70,18 @@
             <input type="hidden" name="id" th:value="${specialityForm.id}" th:field="*{id}">
 
             <label>ФАКУЛЬТЕТ</label><br>
-            <input type="text" name="facultyName" th:value="${specialityForm.facultyName}" th:field="*{facultyName}"><br><br>
+
+            <select th:field="*{facultyId}">
+                <option th:each="faculty : ${faculties}"
+                        th:value="${faculty.id}"
+                        th:text="${faculty.facultyName}"/>
+            </select>
+
+            <!--            <input type="text" name="facultyName" th:value="${specialityForm.facultyName}" th:field="*{facultyName}"><br><br>-->
 
             <label>СПЕЦІАЛЬНІСТЬ</label><br>
-            <input type="text" name="specialityName" th:value="${specialityForm.specialityName}" th:field="*{specialityName}"><br><br>
+            <input type="text" name="specialityName" th:value="${specialityForm.specialityName}"
+                   th:field="*{specialityName}"><br><br>
 
             <button type="submit" class="btn btn-light">ЗБЕРЕГТИ</button>
 
