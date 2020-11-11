@@ -1,57 +1,50 @@
 package sasha.burgazli.App.models;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import sasha.burgazli.App.models.form.DisciplineForm;
 import sasha.burgazli.App.models.form.UserForm;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
-@Entity
-@Table(schema = "public", name = "user")
-public class User{
+public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
 
-    @Column(name = "login")
-    private String login;
-
-    @Column(name = "password")
+    private String username;
     private String password;
+    private String[] roles;
 
-    @Column(name = "role")
-    private String role;
-
-    private User() {
-
+    public User(String username, String password, String... roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
     }
 
-    public User(UserForm form) {
-        this.update(form);
+    public String getUsername() {
+        return username;
     }
 
-    public Long getId() {
-        return id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getLogin() {return login;}
+    public String getPassword() {
+        return password;
+    }
 
-    public void setLogin(String login) {this.login = login;}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public String getPassword() {return password;}
+    public String[] getRoles() {
+        return roles;
+    }
 
-    public void setPassword(String password) {this.password = password;}
-
-    public String getRole() {return role;}
-
-    public void setRole(String role) {this.role = role;}
-
-
-    public void update(UserForm form) {
-        this.login = form.getLogin();
-        this.password = form.getPassword();
-        this.role = form.getRole();
+    public void setRoles(String[] roles) {
+        this.roles = roles;
     }
 }

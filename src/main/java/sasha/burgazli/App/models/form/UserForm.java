@@ -16,10 +16,10 @@ public class UserForm {
     }
 
     public UserForm(User user) {
-        this.id = String.valueOf(user.getId());
-        this.login = String.valueOf(user.getLogin());
+
+        this.login = user.getUsername();
         this.password = String.valueOf(user.getPassword());
-        this.role = String.valueOf(user.getRole());
+//        this.role = String.valueOf(user.getRole());
     }
 
     public String getId() {

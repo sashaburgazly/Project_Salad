@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import sasha.burgazli.App.models.User;
 import sasha.burgazli.App.models.form.SignForm;
-import sasha.burgazli.App.service.UserService;
+//import sasha.burgazli.App.service.UserService;
 
 import java.util.Optional;
 
 @Controller
 public class SignController {
 
-    private final UserService service;
+//    private final UserService service;
 
-    public SignController(UserService service) {
-        this.service = service;
+    public SignController() {
+
     }
 
     @GetMapping(value = "/sign")
