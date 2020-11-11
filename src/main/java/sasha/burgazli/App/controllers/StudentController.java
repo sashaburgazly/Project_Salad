@@ -1,5 +1,6 @@
 package sasha.burgazli.App.controllers;
 
+import org.aspectj.apache.bcel.generic.FieldOrMethod;
 import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -66,7 +67,13 @@ public class StudentController {
             return "redirect:/edit";
         }
 
-        Optional<Student> optional = this.service.findById(Long.valueOf(form.getId()));
+        Optional<Student> optional = null;
+        if(form.getId() == null || form.getId().isEmpty()){
+            optional = Optional.empty();
+        }else {
+            optional = this.service.findById(Long.valueOf(form.getId()));
+        }
+
 
         Student student1 = null;
         if (optional.isPresent()) {
@@ -85,11 +92,13 @@ public class StudentController {
     @GetMapping(value = "/student/add")
     private ModelAndView add() {
 
-        List<Student> list = Collections.emptyList();
+
 
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("student_add");
-        mav.addObject("students", list);
+        StudentForm form = new StudentForm();
+
+        mav.setViewName("student_edit");
+        mav.addObject("studentForm", form);
 
         return mav;
     }

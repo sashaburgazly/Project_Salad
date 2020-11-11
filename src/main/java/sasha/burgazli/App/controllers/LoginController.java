@@ -25,7 +25,7 @@ public class LoginController {
     public ModelAndView loginPage() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("loginForm", new LoginForm());
-        mav.setViewName("index");
+        mav.setViewName("index_log");
         return mav;
     }
 

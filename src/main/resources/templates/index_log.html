@@ -40,7 +40,7 @@
       }
       h1 {
       text-align:center;
-      fone-size:18;
+      font-size:18;
       }
       button:hover {
       opacity: 0.8;
@@ -60,8 +60,8 @@
     </style>
 </head>
 <body>
-<form action="#" th:action="@{/login}" th:object="${loginForm}" method="post">
-    <h1>LOG IN</h1>
+<form th:action="@{/login}" th:object="${loginForm}" method="post">
+    <h1 style="margin:15px 0 15px 0;">LOG IN</h1>
     <div class="form_container">
         <div class="container">
             <label><strong>Username</strong></label>
@@ -70,7 +70,7 @@
             <input type="text" placeholder="Enter Password" th:field="*{password}" required>
         </div>
 
-<!--        <a href="../reg">Sign up</a>-->
+        <a href="../sign">Sign up</a>
         <div class="button_container">
             <button type="submit"><strong>LOG IN</strong></button>
         </div>

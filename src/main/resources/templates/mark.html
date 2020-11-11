@@ -1,10 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+    <meta charset="UTF-8">
+    <title>Mark</title>
+</head>
+<body style="line-height:3;">
+<div class="container-fluid overflow-hidden" style="padding:0; font-size:18px;">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary" style="line-height:2;">
+
+        <div class="dropdown ">
+            <button class="dropbtn">ТАБЛИЦІ</button>
+            <div class="dropdown-content">
+                <a href="/student">СТУДЕНТИ</a>
+                <a href="../mark">ОЦІНКИ</a>
+                <a href="../group">ГРУПИ</a>
+                <a href="../speciality">СПЕЦІАЛЬНОСТІ</a>
+                <a href="../semester">СЕМЕСТРИ</a>
+                <a href="../faculty">ФАКУЛЬТЕТИ</a>
+                <a href="../discipline">ДИСЦИПЛІНИ</a>
+                <a href="../studygroup">НАВЧАЛЬНІ ГРУПИ</a>
+                <a href="../studyplan">НАВЧАЛЬНІ ПЛАНИ</a>
+                <a href="../user">КОРИСТУВАЧІ</a>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <th scope="col" style="padding-right:0; width:8%;">
+                <form th:action="@{/mark}" method="get">
+                    <button type="submit" class="btn btn-light btn-lm" style="border-radius:0rem;">&nbsp;&nbsp;ЗБЕРЕГТИ&nbsp;&nbsp;</button>
+                </form>
+            </th>
+
+            <th scope="col" style="padding-right:0; padding-left: 60px; width:5%;">
+                <form th:action="@{/mark/add}" method="get">
+                    <button type="submit" class="btn btn-light btn-lm" style="border-radius:0rem;">ДОДАТИ</button>
+                </form>
+            </th>
+
+            <th scope="col" style="width:7%">
+                <form th:action="@{/login}" method="get">
+                    <button type="submit" class="btn btn-light btn-lm" style="border-radius:0rem;">ВИЙТИ</button>
+                </form>
+            </th>
+        </div>
+
+
+    </nav>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead class="bg-light text-black">
+                <tr style="border-top:0; border-bottom:2px solid #dee2e6; line-height:2;">
+                    <th scope="col">НАВЧАЛЬНИЙ РІК</th>
+                    <th scope="col">ПОЧАТОК СЕМЕСТРУ</th>
+                    <th scope="col">КІНЕЦЬ СЕМЕСТРУ</th>
+                    <th scope="col">ПРІЗВИЩЕ СТУДЕНТА</th>
+                    <th scope="col">ДИСЦИПЛІНА</th>
+                    <th scope="col">ОЦІНКА</th>
+                    <th scope="col" style="width:3%;"></th>
+                    <th scope="col" style="width:5%;"></th>
+                </tr>
+                </thead>
+                <tbody style="text-align:center; line-height:2;">
+
+                <tr th:if="${marks.empty}">
+                    <td colspan="2"> No marks Available</td>
+                </tr>
+
+                <tr th:each="mark : ${marks}">
+                    <td><span th:text="${mark.studyYear}"></span></td>
+                    <td><span th:text="${mark.startSemesterNumber}"></span></td>
+                    <td><span th:text="${mark.finishSemesterNumber}"></span></td>
+                    <td><span th:text="${mark.studentLastName}"></span></td>
+                    <td><span th:text="${mark.disciplineName}"></span></td>
+                    <td><span th:text="${mark.markValue}"></span></td>
+                    <td>
+                        <span>
+                            <form th:action="@{/mark/edit}" th:object="${mark}" method="get">
+                                <input type="hidden" name="id" th:value="${mark.id}" readonly="">
+                                <button type="submit" class="btn btn-success btn-sm" style="border-radius:0rem;">РЕДАГУВАТИ</button>
+                            </form>
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                             <form th:action="@{/mark/delete}" th:object="${mark}" method="get">
+                                <input type="hidden" name="id" th:value="${mark.id}" readonly="">
+                                <button type="submit" class="btn btn-danger btn-sm" style="border-radius:0rem;">X</button>
+                             </form>
+                        </span>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,10 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<title>Edit</title>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 15px;
+      }
+      form {
+      border: 5px solid #f1f1f1;
+      margin-top:0vh;
+      padding: 5%;
+      }
+      input[type=text], input[type=password] {
+      width: 100%;
+      padding: 16px 8px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      }
+      .icon {
+      font-size: 110px;
+      display: flex;
+      justify-content: center;
+      color: #4286f4;
+      }
+      button {
+      background-color: #4286f4;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: grab;
+      width: 30%;
+      }
+      h1 {
+      text-align:center;
+      font-size:18;
+      }
+      button:hover {
+      opacity: 0.8;
+      }
+      .form_container {
+      text-align: center;
+      margin: 24px 50px 12px;
+      }
+      .button_container{
+      padding: 10px 0 0 0px;
+      }
+      .container {
+      padding: 16px 0;
+      text-align:left;
+      }
+
+    </style>
 </head>
-<body>
-$END$
+<body style="width:30%">
+
+<div class="form_container">
+    <div class="container">
+        <form th:action="@{/faculty/save}" th:object="${facultyForm}" method="post">
+
+            <input type="hidden" name="id" th:value="${facultyForm.id}" th:field="*{id}">
+
+            <label>ФАКУЛЬТЕТ</label>
+            <input type="text" name="facultyName" th:value="${facultyForm.facultyName}" th:field="*{facultyName}"><br><br>
+
+            <label>АДРЕСА</label>
+            <input type="text" name="address" th:value="${facultyForm.address}" th:field="*{address}"><br><br>
+
+            <label>ДЕКАН</label>
+            <input type="text" name="deanFio" th:value="${facultyForm.deanFio}" th:field="*{deanFio}"><br><br>
+
+            <label>МЕТОДИСТ</label>
+            <input type="text" name="methodistFio" th:value="${facultyForm.methodistFio}" th:field="*{methodistFio}"><br><br>
+
+            <label>E-MAIL</label>
+            <input type="text" name="email" th:value="${facultyForm.email}" th:field="*{email}"><br><br>
+
+            <label>КІЛЬКІСТЬ КАФЕДР</label>
+            <input type="text" name="cathedraAmount" th:value="${facultyForm.cathedraAmount}" th:field="*{cathedraAmount}"><br><br>
+
+            <label>КІЛЬКІСТЬ ВИКЛАДАЧІВ</label>
+            <input type="text" name="professorAmount" th:value="${facultyForm.professorAmount}" th:field="*{professorAmount}"><br><br>
+
+            <label>КІЛЬКІСТЬ СТУДЕНТІВ</label>
+            <input type="text" name="studentAmount" th:value="${facultyForm.studentAmount}" th:field="*{studentAmount}"><br><br>
+
+            <button type="submit" class="btn btn-light">ЗБЕРЕГТИ</button>
+
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
+
+
+
+

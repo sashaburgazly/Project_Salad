@@ -5,58 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Student</title>
 </head>
-<body>
-<div class="container">
+<body style="line-height:3;">
+<div class="container-fluid overflow-hidden" style="padding:0; font-size:18px;">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary" style="line-height:2;">
+
+        <div class="dropdown ">
+            <button class="dropbtn">ТАБЛИЦІ</button>
+            <div class="dropdown-content">
+                <a href="/student">СТУДЕНТИ</a>
+                <a href="../mark">ОЦІНКИ</a>
+                <a href="../group">ГРУПИ</a>
+                <a href="../speciality">СПЕЦІАЛЬНОСТІ</a>
+                <a href="../semester">СЕМЕСТРИ</a>
+                <a href="../faculty">ФАКУЛЬТЕТИ</a>
+                <a href="../discipline">ДИСЦИПЛІНИ</a>
+                <a href="../studygroup">НАВЧАЛЬНІ ГРУПИ</a>
+                <a href="../studyplan">НАВЧАЛЬНІ ПЛАНИ</a>
+                <a href="../user">КОРИСТУВАЧІ</a>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <th scope="col" style="padding-right:0; width:8%;">
+                <form th:action="@{/student}" method="get">
+                    <button type="submit" class="btn btn-light btn-lm" style="border-radius:0rem;">&nbsp;&nbsp;ЗБЕРЕГТИ&nbsp;&nbsp;</button>
+                </form>
+            </th>
+
+            <th scope="col" style="padding-right:0; padding-left: 60px; width:5%;">
+                <form th:action="@{/student/add}" method="get">
+                    <button type="submit" class="btn btn-light btn-lm" style="border-radius:0rem;">ДОДАТИ</button>
+                </form>
+            </th>
+
+            <th scope="col" style="width:7%">
+                <form th:action="@{/login}" method="get">
+                    <button type="submit" class="btn btn-light btn-lm" style="border-radius:0rem;">ВИЙТИ</button>
+                </form>
+            </th>
+        </div>
+
+
+    </nav>
     <div class="row">
         <div class="col">
             <table class="table">
-
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">FirstName</th>
-                    <th scope="col">LastName</th>
-                    <th scope="col">Father Name</th>
-                    <th scope="col">Date of birth</th>
-                    <th scope="col">Sex</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                <thead class="bg-light text-black">
+                <tr style="border-top:0; border-bottom:2px solid #dee2e6; line-height:2;">
+                    <th scope="col">ПРІЗВИЩЕ</th>
+                    <th scope="col">ІМ'Я</th>
+                    <th scope="col">ПО БАТЬКОВІ</th>
+                    <th scope="col">ДАТА НАРОДЖЕННЯ</th>
+                    <th scope="col">АДРЕСА</th>
+                    <th scope="col">ТЕЛЕФОН</th>
+                    <th scope="col" style="width:3%;"></th>
+                    <th scope="col" style="width:5%;"></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style="text-align:center; line-height:2;">
 
                 <tr th:if="${students.empty}">
                     <td colspan="2"> No Students Available</td>
                 </tr>
 
                 <tr th:each="student : ${students}">
-
-
-                    <td><span th:text="${student.id}"></span></td>
-                    <td><span th:text="${student.firstName}"></span></td>
                     <td><span th:text="${student.lastName}"></span></td>
+                    <td><span th:text="${student.firstName}"></span></td>
                     <td><span th:text="${student.fatherName}"></span></td>
-
                     <td><span th:text="${student.date}"></span></td>
-                    <td></td>
                     <td><span th:text="${student.address}"></span></td>
                     <td><span th:text="${student.phone}"></span></td>
                     <td>
-                        <form th:action="@{/student/edit}" th:object="${student}" method="get">
-                            <input type="hidden" name="id" th:value="${student.id}" readonly="">
-                            <button type="submit">EDIT</button>
-                        </form>
+                        <span>
+                            <form th:action="@{/student/edit}" th:object="${student}" method="get">
+                                <input type="hidden" name="id" th:value="${student.id}" readonly="">
+                                <button type="submit" class="btn btn-success btn-sm" style="border-radius:0rem;">РЕДАГУВАТИ</button>
+                            </form>
+                        </span>
                     </td>
-
                     <td>
-                        <form th:action="@{/student/delete}" th:object="${student}" method="get">
-                            <input type="hidden" name="id" th:value="${student.id}" readonly="">
-                            <button type="submit">Delete</button>
-                        </form>
+                        <span>
+                             <form th:action="@{/student/delete}" th:object="${student}" method="get">
+                                <input type="hidden" name="id" th:value="${student.id}" readonly="">
+                                <button type="submit" class="btn btn-danger btn-sm" style="border-radius:0rem;">X</button>
+                             </form>
+                        </span>
                     </td>
 
                 </tr>
@@ -64,7 +99,6 @@
             </table>
         </div>
     </div>
-
 </div>
 </body>
 </html>

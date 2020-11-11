@@ -1,12 +1,13 @@
 package sasha.burgazli.App.models;
 
+import sasha.burgazli.App.models.form.MarkForm;
 import sasha.burgazli.App.models.form.SemesterForm;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(schema = "public", name = "marks")
+@Table(schema = "public", name = "mark")
 public class Mark{
 
     @Id
@@ -14,20 +15,30 @@ public class Mark{
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "studyYear")
+    private Integer studyYear;
+
     @Column(name = "startSemesterNumber")
     private Date startSemesterNumber;
 
     @Column(name = "finishSemesterNumber")
     private Date finishSemesterNumber;
 
-    @Column(name = "sessionSuccess")
-    private Integer sessionSuccess;
+    @Column(name = "studentLastName")
+    private String studentLastName;
 
-    private Semester() {
+    @Column(name = "disciplineName")
+    private String disciplineName;
+
+    @Column(name = "markValue")
+    private Integer markValue;
+
+
+    private Mark() {
 
     }
 
-    public Semester(SemesterForm form) {
+    public Mark(MarkForm form) {
         this.update(form);
     }
 
@@ -35,22 +46,36 @@ public class Mark{
         return id;
     }
 
+    public Integer getStudyYear(){return studyYear;}
+
+    public void setStudyYear(Integer studyYear){this.studyYear=studyYear;}
+
+    public Date getStartSemesterNumber(){return startSemesterNumber;}
+
+    public void setStartSemesterNumber(Date startSemesterNumber){this.startSemesterNumber=startSemesterNumber;}
+
     public Date getFinishSemesterNumber() {return finishSemesterNumber;}
 
     public void setFinishSemesterNumber(Date finishSemesterNumber) {this.finishSemesterNumber = finishSemesterNumber;}
 
-    public Date getStartSemesterNumber() {return startSemesterNumber;}
+    public String getStudentLastName(){return studentLastName;}
 
-    public void setStartSemesterNumber(Date startSemesterNumber) {this.startSemesterNumber = startSemesterNumber;}
+    public void setStudentLastName(String studentLastName){this.studentLastName=studentLastName;}
 
-    public Integer getSessionSuccess() {return sessionSuccess;}
+    public String getDisciplineName(){return disciplineName;}
 
-    public void setSessionSuccess(Integer sessionSuccess) {this.sessionSuccess = sessionSuccess;}
+    public void setDisciplineName(String disciplineName){this.disciplineName=disciplineName;}
 
+    public Integer getMarkValue(){return markValue;}
 
-    public void update(SemesterForm form) {
+    public void setMarkValue(Integer markValue){this.markValue=markValue;}
+
+    public void update(MarkForm form) {
+        this.studyYear = form.getStudyYear();
         this.startSemesterNumber = form.getStartSemesterNumber();
         this.finishSemesterNumber = form.getFinishSemesterNumber();
-        this.sessionSuccess = form.getSessionSuccess();
+        this.studentLastName = form.getStudentLastName();
+        this.disciplineName = form.getDisciplineName();
+        this.markValue = form.getMarkValue();
     }
 }

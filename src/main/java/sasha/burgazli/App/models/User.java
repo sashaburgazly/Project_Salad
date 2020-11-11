@@ -1,37 +1,57 @@
 package sasha.burgazli.App.models;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import sasha.burgazli.App.models.*;
+import sasha.burgazli.App.models.form.DisciplineForm;
+import sasha.burgazli.App.models.form.UserForm;
+
 import javax.persistence.*;
-import java.util.*;
+import java.util.Date;
 
 @Entity
 @Table(schema = "public", name = "user")
-public class User {
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name="login")
+    @Column(name = "login")
     private String login;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    @Column(name = "role")
+    private String role;
 
-    @Column(name = "privilege")
-    private Long privilege;
+    private User() {
+
+    }
+
+    public User(UserForm form) {
+        this.update(form);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getLogin() {return login;}
+
+    public void setLogin(String login) {this.login = login;}
+
+    public String getPassword() {return password;}
+
+    public void setPassword(String password) {this.password = password;}
+
+    public String getRole() {return role;}
+
+    public void setRole(String role) {this.role = role;}
 
 
-
+    public void update(UserForm form) {
+        this.login = form.getLogin();
+        this.password = form.getPassword();
+        this.role = form.getRole();
+    }
 }

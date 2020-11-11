@@ -21,19 +21,19 @@ public class SignController {
         this.service = service;
     }
 
-    @GetMapping(value = "/signup")
+    @GetMapping(value = "/sign")
     public ModelAndView signPage() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("signForm", new SignForm());
-        mav.setViewName("index_log");
+        mav.setViewName("index_sign");
         return mav;
     }
 
-    @PostMapping(value = "/login")
-    public String loginForm(@ModelAttribute LoginForm form, BindingResult result) {
+    @PostMapping(value = "/signup")
+    public String signForm(@ModelAttribute SignForm form, BindingResult result) {
 
         if (result.hasErrors()) {
-            return "redirect:/login";
+            return "redirect:/sign";
         }
 
 //        Optional<User> user = this.service.authUser(form);

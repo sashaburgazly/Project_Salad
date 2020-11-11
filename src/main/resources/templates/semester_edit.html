@@ -1,10 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<title>Edit</title>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 15px;
+      }
+      form {
+      border: 5px solid #f1f1f1;
+      margin-top:20vh;
+      padding: 5%;
+      }
+      input[type=text], input[type=password] {
+      width: 100%;
+      padding: 16px 8px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      }
+      .icon {
+      font-size: 110px;
+      display: flex;
+      justify-content: center;
+      color: #4286f4;
+      }
+      button {
+      background-color: #4286f4;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: grab;
+      width: 30%;
+      }
+      h1 {
+      text-align:center;
+      font-size:18;
+      }
+      button:hover {
+      opacity: 0.8;
+      }
+      .form_container {
+      text-align: center;
+      margin: 24px 50px 12px;
+      }
+      .button_container{
+      padding: 10px 0 0 0px;
+      }
+      .container {
+      padding: 16px 0;
+      text-align:left;
+      }
+
+    </style>
 </head>
-<body>
-$END$
+<body style="width:30%">
+
+<div class="form_container">
+    <div class="container">
+        <form th:action="@{/semester/save}" th:object="${semesterForm}" method="post">
+
+            <input type="hidden" name="id" th:value="${semesterForm.id}" th:field="*{id}">
+
+            <label>ПОЧАТОК СЕМЕСТРУ</label><br>
+            <input type="date" name="startSemesterNumber" th:value="${semesterForm.startSemesterNumber}" th:field="*{startSemesterNumber}"><br><br>
+
+            <label>КІНЕЦЬ СЕМЕСТРУ</label><br>
+            <input type="date" name="finishSemesterNumber" th:value="${semesterForm.finishSemesterNumber}" th:field="*{finishSemesterNumber}"><br><br>
+
+            <label>ПРОЦЕНТ УСПІШНОСТІ СЕСІЇ</label>
+            <input type="text" name="sessionSuccess" th:value="${semesterForm.sessionSuccess}" th:field="*{sessionSuccess}"><br><br>
+
+            <button type="submit" class="btn btn-light">ЗБЕРЕГТИ</button>
+
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
+
+
+
+

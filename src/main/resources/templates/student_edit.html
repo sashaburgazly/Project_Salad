@@ -1,32 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<title>Edit</title>
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 15px;
+      }
+      form {
+      border: 5px solid #f1f1f1;
+      margin-top:20vh;
+      padding: 5%;
+      }
+      input[type=text], input[type=password] {
+      width: 100%;
+      padding: 16px 8px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      }
+      .icon {
+      font-size: 110px;
+      display: flex;
+      justify-content: center;
+      color: #4286f4;
+      }
+      button {
+      background-color: #4286f4;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: grab;
+      width: 30%;
+      }
+      h1 {
+      text-align:center;
+      font-size:18;
+      }
+      button:hover {
+      opacity: 0.8;
+      }
+      .form_container {
+      text-align: center;
+      margin: 24px 50px 12px;
+      }
+      .button_container{
+      padding: 10px 0 0 0px;
+      }
+      .container {
+      padding: 16px 0;
+      text-align:left;
+      }
 
-    <meta charset="UTF-8">
-    <title>Title</title>
+    </style>
 </head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <form action="#" th:action="@{/student/save}" th:object="${studentForm}" method="post">
+<body style="width:30%">
+
+    <div class="form_container">
+        <div class="container">
+            <form th:action="@{/student/save}" th:object="${studentForm}" method="post">
 
                 <input type="hidden" name="id" th:value="${studentForm.id}" th:field="*{id}">
-                <input type="text" name="firstName" th:value="${studentForm.firstName}" th:field="*{firstName}">
+
+                <label>ПРІЗВИЩЕ</label>
                 <input type="text" name="lastName" th:value="${studentForm.lastName}" th:field="*{lastName}">
+
+                <label>ІМ'Я</label>
+                <input type="text" name="firstName" th:value="${studentForm.firstName}" th:field="*{firstName}">
+
+                <label>ПО БАТЬКОВІ</label>
                 <input type="text" name="fatherName" th:value="${studentForm.fatherName}" th:field="*{fatherName}">
-                <input type="date" name="id" th:value="${studentForm.date}" th:field="*{date}">
+
+                <label>ДАТА НАРОДЖЕННЯ</label><br>
+                <input type="date" name="id" th:value="${studentForm.date}" th:field="*{date}"><br><br>
+
+                <label>АДРЕСА</label>
                 <input type="text" name="id" th:value="${studentForm.address}" th:field="*{address}">
-                <input type="tel" name="id" th:value="${studentForm.phone}" th:field="*{phone}">
 
-                <button type="submit">SAVE</button>
+                <label>ТЕЛЕФОН</label><br>
+                <input type="text" name="id" th:value="${studentForm.phone}" th:field="*{phone}"><br>
 
+                <button type="submit" class="btn btn-light">ЗБЕРЕГТИ</button>
+                <form th:action="@{/student}" method="get">
+                    <button type="submit" class="btn btn-light" style="border-radius:0rem;">СКАСУВАТИ</button>
+                </form>
             </form>
 
         </div>
     </div>
-</div>
+
 </body>
 </html>
+
+
+
+

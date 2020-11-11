@@ -15,26 +15,7 @@ public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository repository;
 
-    public StudentServiceImpl(StudentRepository repository) {
-        this.repository = repository;
-
-
-        for (int i = 0; i < 10; i++) {
-
-            StudentForm form = new StudentForm();
-            form.setFirstName(String.valueOf(i));
-            form.setLastName(String.valueOf(i));
-            form.setFatherName(String.valueOf(i));
-
-            this.repository.save(new Student(form));
-//            this.repository.save(new Student(String.valueOf(i),
-//                    String.valueOf(i),
-//                    String.valueOf(i),
-//                    new Date(), String.valueOf(i), String.valueOf(i)));
-        }
-
-
-    }
+    public StudentServiceImpl(StudentRepository repository) {this.repository = repository;}
 
 
     @Override
