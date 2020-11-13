@@ -23,6 +23,7 @@
                 <a href="../discipline">ДИСЦИПЛІНИ</a>
                 <a href="../studygroup">НАВЧАЛЬНІ ГРУПИ</a>
                 <a href="../studyplan">НАВЧАЛЬНІ ПЛАНИ</a>
+                <a href="../studyyear">НАВЧАЛЬНИЙ РІК</a>
                 <a href="../user">КОРИСТУВАЧІ</a>
             </div>
         </div>
@@ -64,7 +65,7 @@
                 <tbody style="text-align:center; line-height:2;">
 
                 <tr th:if="${disciplines.empty}">
-                    <td colspan="2"> No Disciplines Available</td>
+                    <td colspan="2"> No disciplines available</td>
                 </tr>
 
                 <tr th:each="discipline : ${disciplines}">

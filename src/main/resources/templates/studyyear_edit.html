@@ -13,7 +13,7 @@
       }
       form {
       border: 5px solid #f1f1f1;
-      margin-top:0vh;
+      margin-top:20vh;
       padding: 5%;
       }
       input[type=text], input[type=password] {
@@ -48,7 +48,7 @@
       }
       .form_container {
       text-align: center;
-      margin: 100px 50px 12px;
+      margin: 24px 50px 12px;
       }
       .button_container{
       padding: 10px 0 0 0px;
@@ -64,27 +64,14 @@
 
 <div class="form_container">
     <div class="container">
-        <form th:action="@{/group/save}" th:object="${groupForm}" method="post">
+        <form th:action="@{/studyyear/save}" th:object="${studyyearForm}" method="post">
 
-            <input type="hidden" name="id" th:value="${groupForm?.id}" th:field="*{id}">
+            <input type="hidden" name="id" th:value="${studyyearForm.id}" th:field="*{id}">
 
-            <label>НАВЧАЛЬНИЙ РІК</label>
-            <input type="text" name="studyYear" th:value="${groupForm.studyYear}" th:field="*{studyYear}"><br><br>
-
-            <label>ПОЧАТОК СЕМЕСТРУ</label>
-            <input type="date" name="startSemesterNumber" th:value="${groupForm.startSemesterNumber}" th:field="*{startSemesterNumber}"><br><br>
-
-            <label>КІНЕЦЬ СЕМЕСТРУ</label>
-            <input type="date" name="finishSemesterNumber" th:value="${groupForm.finishSemesterNumber}" th:field="*{finishSemesterNumber}"><br><br>
-
-            <label>ПРІЗВИЩЕ СТУДЕНТА</label>
-            <input type="text" name="studentLastName" th:value="${groupForm.studentLastName}" th:field="*{studentLastName}"><br><br>
-
-            <label>НОМЕР ГРУПИ</label>
-            <input type="text" name="groupNumber" th:value="${groupForm.groupNumber}" th:field="*{groupNumber}"><br><br>
+            <label>РІК НАВЧАННЯ</label><br>
+            <input type="date" name="studyYear" th:value="${studyyearForm.studyYear}" th:field="*{studyYear}"><br><br>
 
             <button type="submit" class="btn btn-light">ЗБЕРЕГТИ</button>
-            <a href="/group">СКАСУВАТИ</a>
 
         </form>
     </div>

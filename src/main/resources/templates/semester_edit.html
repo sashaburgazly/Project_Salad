@@ -68,16 +68,25 @@
 
             <input type="hidden" name="id" th:value="${semesterForm.id}" th:field="*{id}">
 
-            <label>ПОЧАТОК СЕМЕСТРУ</label><br>
-            <input type="date" name="startSemesterNumber" th:value="${semesterForm.startSemesterNumber}" th:field="*{startSemesterNumber}"><br><br>
+            <label>РІК НАВЧАННЯ</label><br>
 
-            <label>КІНЕЦЬ СЕМЕСТРУ</label><br>
-            <input type="date" name="finishSemesterNumber" th:value="${semesterForm.finishSemesterNumber}" th:field="*{finishSemesterNumber}"><br><br>
+            <select th:field="*{studyYearId}">
+                <option th:each="studyyear : ${studyyears}"
+                        th:value="${studyyear.id}"
+                        th:text="${studyyear.studyYear}"/>
+            </select><br><br>
+
+            <label>СЕМЕСТР</label>
+            <select name="semesterNumber" th:value="${semesterForm.semesterNumber}" th:field="*{semesterNumber}">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select><br><br>
 
             <label>ПРОЦЕНТ УСПІШНОСТІ СЕСІЇ</label>
             <input type="text" name="sessionSuccess" th:value="${semesterForm.sessionSuccess}" th:field="*{sessionSuccess}"><br><br>
 
             <button type="submit" class="btn btn-light">ЗБЕРЕГТИ</button>
+            <a href="/semester">СКАСУВАТИ</a>
 
         </form>
     </div>

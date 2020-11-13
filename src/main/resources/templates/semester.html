@@ -23,6 +23,7 @@
                 <a href="../discipline">ДИСЦИПЛІНИ</a>
                 <a href="../studygroup">НАВЧАЛЬНІ ГРУПИ</a>
                 <a href="../studyplan">НАВЧАЛЬНІ ПЛАНИ</a>
+                <a href="../studyyear">НАВЧАЛЬНИЙ РІК</a>
                 <a href="../user">КОРИСТУВАЧІ</a>
             </div>
         </div>
@@ -54,8 +55,8 @@
             <table class="table">
                 <thead class="bg-light text-black">
                 <tr style="border-top:0; border-bottom:2px solid #dee2e6; line-height:2;">
-                    <th scope="col">ПОЧАТОК СЕМЕСТРУ</th>
-                    <th scope="col">КІНЕЦЬ СЕМЕСТРУ</th>
+                    <th scope="col">РІК НАВЧАННЯ</th>
+                    <th scope="col">СЕМЕСТР</th>
                     <th scope="col">ПРОЦЕНТ УСПІШНОСТІ СЕСІЇ, %</th>
                     <th scope="col" style="width:3%;"></th>
                     <th scope="col" style="width:5%;"></th>
@@ -64,12 +65,12 @@
                 <tbody style="text-align:center; line-height:2;">
 
                 <tr th:if="${semesters.empty}">
-                    <td colspan="2"> No Semesters Available</td>
+                    <td colspan="2"> No semesters available</td>
                 </tr>
 
                 <tr th:each="semester : ${semesters}">
-                    <td><span th:text="${semester.startSemesterNumber}"></span></td>
-                    <td><span th:text="${semester.finishSemesterNumber}"></span></td>
+                    <td><span th:text="${semester.studyYear}"></span></td>
+                    <td><span th:text="${semester.semesterNumber}"></span></td>
                     <td><span th:text="${semester.sessionSuccess}"></span></td>
 
                     <td>

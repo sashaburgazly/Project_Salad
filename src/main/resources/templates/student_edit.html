@@ -87,9 +87,7 @@
                 <input type="text" name="id" th:value="${studentForm.phone}" th:field="*{phone}"><br>
 
                 <button type="submit" class="btn btn-light">ЗБЕРЕГТИ</button>
-                <form th:action="@{/student}" method="get">
-                    <button type="submit" class="btn btn-light" style="border-radius:0rem;">СКАСУВАТИ</button>
-                </form>
+                <a href="/student">СКАСУВАТИ</a>
             </form>
 
         </div>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <meta charset="UTF-8">
-    <title>Speciality</title>
+    <title>Study Plan</title>
 </head>
 <body style="line-height:3;">
 <div class="container-fluid overflow-hidden" style="padding:0; font-size:18px;">
@@ -23,20 +23,19 @@
                 <a href="../discipline">ДИСЦИПЛІНИ</a>
                 <a href="../studygroup">НАВЧАЛЬНІ ГРУПИ</a>
                 <a href="../studyplan">НАВЧАЛЬНІ ПЛАНИ</a>
-                <a href="../studyyear">НАВЧАЛЬНИЙ РІК</a>
                 <a href="../user">КОРИСТУВАЧІ</a>
             </div>
         </div>
 
         <div class="btn-group">
             <th scope="col" style="padding-right:0; width:8%;">
-                <form th:action="@{/speciality}" method="get">
+                <form th:action="@{/studyyear}" method="get">
                     <button type="submit" class="btn btn-light btn-lm" style="border-radius:0rem;">&nbsp;&nbsp;ЗБЕРЕГТИ&nbsp;&nbsp;</button>
                 </form>
             </th>
 
             <th scope="col" style="padding-right:0; padding-left: 60px; width:5%;">
-                <form th:action="@{/speciality/add}" method="get">
+                <form th:action="@{/studyyear/add}" method="get">
                     <button type="submit" class="btn btn-light btn-lm" style="border-radius:0rem;">ДОДАТИ</button>
                 </form>
             </th>
@@ -55,33 +54,37 @@
             <table class="table">
                 <thead class="bg-light text-black">
                 <tr style="border-top:0; border-bottom:2px solid #dee2e6; line-height:2;">
-                    <th scope="col">ФАКУЛЬТЕТ</th>
                     <th scope="col">СПЕЦІАЛЬНІСТЬ</th>
+                    <th scope="col">РІК НАВЧАННЯ</th>
+                    <th scope="col">КУРС</th>
+                    <th scope="col">ПОЧАТОК СЕМЕСТРУ</th>
+                    <th scope="col">КІНЕЦЬ СЕМЕСТРУ</th>
+                    <th scope="col">ДИСЦИПЛІНА</th>
+                    <th scope="col">КІЛЬКІСТЬ ГОДИН</th>
                     <th scope="col" style="width:3%;"></th>
                     <th scope="col" style="width:5%;"></th>
                 </tr>
                 </thead>
                 <tbody style="text-align:center; line-height:2;">
 
-                <tr th:if="${specialities.empty}">
-                    <td colspan="2"> No specialities available</td>
+                <tr th:if="${studyyear.empty}">
+                    <td colspan="2"> No Study Plans Available</td>
                 </tr>
-                <tr th:each="speciality : ${specialities}">
-                    <td><span th:text="${speciality.facultyName}"></span></td>
-                    <td><span th:text="${speciality.specialityName}"></span></td>
 
+                <tr th:each="studyyear : ${studyyears}">
+                    <td><span th:text="${studyyear.studyYear}"></span></td>
                     <td>
                         <span>
-                            <form th:action="@{/speciality/edit}" th:object="${speciality}" method="get">
-                                <input type="hidden" name="id" th:value="${speciality.id}" readonly="">
+                            <form th:action="@{/studyyear/edit}" th:object="${studyyear}" method="get">
+                                <input type="hidden" name="id" th:value="${studyyear.id}" readonly="">
                                 <button type="submit" class="btn btn-success btn-sm" style="border-radius:0rem;">РЕДАГУВАТИ</button>
                             </form>
                         </span>
                     </td>
                     <td>
                         <span>
-                             <form th:action="@{/speciality/delete}" th:object="${speciality}" method="get">
-                                <input type="hidden" name="id" th:value="${speciality.id}" readonly="">
+                             <form th:action="@{/studyyear/delete}" th:object="${studyyear}" method="get">
+                                <input type="hidden" name="id" th:value="${studyyear.id}" readonly="">
                                 <button type="submit" class="btn btn-danger btn-sm" style="border-radius:0rem;">X</button>
                              </form>
                         </span>

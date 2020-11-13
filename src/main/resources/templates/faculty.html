@@ -23,6 +23,7 @@
                 <a href="../discipline">ДИСЦИПЛІНИ</a>
                 <a href="../studygroup">НАВЧАЛЬНІ ГРУПИ</a>
                 <a href="../studyplan">НАВЧАЛЬНІ ПЛАНИ</a>
+                <a href="../studyyear">НАВЧАЛЬНИЙ РІК</a>
                 <a href="../user">КОРИСТУВАЧІ</a>
             </div>
         </div>
@@ -69,7 +70,7 @@
                 <tbody style="text-align:center; line-height:2;">
 
                 <tr th:if="${facultys.empty}">
-                    <td colspan="2"> No facultys Available</td>
+                    <td colspan="2"> No facultys available</td>
                 </tr>
 
                 <tr th:each="faculty : ${facultys}">
